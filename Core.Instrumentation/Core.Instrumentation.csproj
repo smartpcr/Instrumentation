@@ -51,6 +51,8 @@
     <Compile Include="Caching\ICacheContext.cs" />
     <Compile Include="Caching\MethodBaseExtensions.cs" />
     <Compile Include="Caching\TimeCacheAttribute.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="ETW\TraceEventSource.cs" />
     <Compile Include="ExceptionHandlers\InstrumentExceptionRateAttribute.cs" />
     <Compile Include="ExceptionHandlers\InstrumentExceptionsPerSecondAttribute.cs" />
     <Compile Include="Formatter.cs" />

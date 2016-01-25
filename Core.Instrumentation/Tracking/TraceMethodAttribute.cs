@@ -3,6 +3,7 @@
 	using System;
 	using System.Diagnostics;
 	using System.Reflection;
+	using Core.Instrumentation.ETW;
 	using PostSharp.Aspects;
 	using PostSharp.Extensibility;
 
@@ -12,7 +13,9 @@
 	public sealed class TraceMethodAttribute : OnMethodBoundaryAspect
 	{
 		#region props
-		public string Category { get; private set; }
+		public Categories Category { get; private set; }
+		public Layers Layer { get; private set; }
+
 		[NonSerialized]
 		private string enteringMessage;
 		[NonSerialized]
@@ -22,13 +25,18 @@
 		#endregion
 
 		#region ctor
-		public TraceMethodAttribute()
+		public TraceMethodAttribute():this(Categories.Default)
 		{
 		}
 
-		public TraceMethodAttribute(string categoryName)
+		public TraceMethodAttribute(Categories category):this(category, Layers.Unknown)
 		{
-			this.Category = categoryName;
+		}
+
+		public TraceMethodAttribute(Categories category, Layers layer)
+		{
+			this.Category = category;
+			this.Layer = layer;
 		}
 		#endregion
 
@@ -36,28 +44,25 @@
 
 		public override void RuntimeInitialize(MethodBase method)
 		{
-			this.methodName = method.DeclaringType.FullName + "." + method.Name;
+			this.methodName = 
+				method.DeclaringType==null
+				? method.Name 
+				: method.DeclaringType.FullName + "." + method.Name;
 			this.enteringMessage = "Entering " + methodName;
 			this.exitingMessage = "Exiting " + methodName;
 		}
 
 		public override void OnEntry(MethodExecutionArgs args)
 		{
-			Trace.Indent();
-			Trace.WriteLine(this.enteringMessage, this.Category);
+			TraceEventSource.Log.BeforeMethod(this.enteringMessage, this.Category, this.Layer);
 			args.MethodExecutionTag = Utility.GlobalStopwatch.ElapsedTicks;
 		}
 
 		public override void OnExit(MethodExecutionArgs args)
 		{
 			decimal milliseconds = Utility.TicksDiffInMs((long)args.MethodExecutionTag);
-
-			Trace.Indent();
-			Trace.WriteLine(string.Format("{0}ms elapsed in {1}", milliseconds, this.methodName), this.Category);
-			Trace.Unindent();
-
-			Trace.WriteLine(this.exitingMessage, this.Category);
-			Trace.Unindent();
+			TraceEventSource.Log.TimeMethod(milliseconds, this.Category, this.Layer);
+			TraceEventSource.Log.AfterMethod(this.exitingMessage, this.Category, this.Layer);
 		}
 
 		#endregion
