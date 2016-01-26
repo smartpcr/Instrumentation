@@ -1,21 +1,20 @@
-﻿namespace Core.Instrumentation.ETW
+﻿namespace Core.Instrumentation.Tracings
 {
-	using System;
-	using System.Diagnostics.Tracing;
-	using Core.Instrumentation.Tracking;
+    using System;
+    using System.Diagnostics.Tracing;
 
-	[EventSource(Name = "Test-Instrumentation-ETW")]
-	public sealed class TraceEventSource : EventSource
-	{
+    [EventSource(Name = "Test-Instrumentation-ETW")]
+	public sealed class EtwTraceEventSource : EventSource, ITraceLogger
+    {
 		#region log
-		private static Lazy<TraceEventSource> _log = new Lazy<TraceEventSource>();
+		private static Lazy<EtwTraceEventSource> _log = new Lazy<EtwTraceEventSource>();
 
-		public static TraceEventSource Log
+		public static EtwTraceEventSource Log
 		{
 			get { return _log.Value; }
 		}
 
-		private TraceEventSource()
+		private EtwTraceEventSource()
 		{
 		}
 		#endregion

@@ -52,7 +52,7 @@
     <Compile Include="Caching\MethodBaseExtensions.cs" />
     <Compile Include="Caching\TimeCacheAttribute.cs" />
     <Compile Include="Enums.cs" />
-    <Compile Include="ETW\TraceEventSource.cs" />
+    <Compile Include="Tracings\EtwTraceEventSource.cs" />
     <Compile Include="ExceptionHandlers\InstrumentExceptionRateAttribute.cs" />
     <Compile Include="ExceptionHandlers\InstrumentExceptionsPerSecondAttribute.cs" />
     <Compile Include="Formatter.cs" />
@@ -63,6 +63,7 @@
     <Compile Include="Performance\PerformanceCounterAttribute.cs" />
     <Compile Include="Performance\TimedMethodAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tracings\ITraceLogger.cs" />
     <Compile Include="Tracking\LogMethodAttribute.cs" />
     <Compile Include="Tracking\TraceMethodAttribute.cs" />
     <Compile Include="Utility.cs" />

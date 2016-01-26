@@ -3,7 +3,7 @@
 	using System;
 	using System.Diagnostics;
 	using System.Reflection;
-	using Core.Instrumentation.ETW;
+	using Core.Instrumentation.Tracings;
 	using PostSharp.Aspects;
 	using PostSharp.Extensibility;
 
@@ -54,15 +54,15 @@
 
 		public override void OnEntry(MethodExecutionArgs args)
 		{
-			TraceEventSource.Log.BeforeMethod(this.enteringMessage, this.Category, this.Layer);
+            EtwTraceEventSource.Log.BeforeMethod(this.enteringMessage, this.Category, this.Layer);
 			args.MethodExecutionTag = Utility.GlobalStopwatch.ElapsedTicks;
 		}
 
 		public override void OnExit(MethodExecutionArgs args)
 		{
 			decimal milliseconds = Utility.TicksDiffInMs((long)args.MethodExecutionTag);
-			TraceEventSource.Log.TimeMethod(milliseconds, this.Category, this.Layer);
-			TraceEventSource.Log.AfterMethod(this.exitingMessage, this.Category, this.Layer);
+            EtwTraceEventSource.Log.TimeMethod(milliseconds, this.Category, this.Layer);
+            EtwTraceEventSource.Log.AfterMethod(this.exitingMessage, this.Category, this.Layer);
 		}
 
 		#endregion
