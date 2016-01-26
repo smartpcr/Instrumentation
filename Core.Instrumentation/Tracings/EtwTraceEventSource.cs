@@ -1,7 +1,9 @@
 ﻿namespace Core.Instrumentation.Tracings
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics.Tracing;
+    using Core.Instrumentation.Tracking;
 
     [EventSource(Name = "Test-Instrumentation-ETW")]
 	public sealed class EtwTraceEventSource : EventSource, ITraceLogger
@@ -14,7 +16,7 @@
 			get { return _log.Value; }
 		}
 
-		private EtwTraceEventSource()
+		public EtwTraceEventSource()
 		{
 		}
 		#endregion
@@ -41,24 +43,6 @@
 		#endregion
 
 		#region log method
-		[Event(EventIds.MethodStart, Message = "{0}")]
-		public void BeforeMethod(string enteringMessage, Categories category, Layers layer)
-		{
-			if (IsEnabled())
-			{
-				WriteEvent(EventIds.MethodStart, category, layer);
-			}
-		}
-
-		[Event(EventIds.MethodEnd, Message = "{0}")]
-		public void AfterMethod(string enteringMessage, Categories category, Layers layer)
-		{
-			if (IsEnabled())
-			{
-				WriteEvent(EventIds.MethodEnd, category, layer);
-			}
-		}
-
 		[Event(EventIds.TimeMethod, Message = "elapsed: {0} ms")]
 		public void TimeMethod(decimal elapsedMiliSeconds, Categories category, Layers layer)
 		{
@@ -67,7 +51,28 @@
 				WriteEvent(EventIds.TimeMethod, elapsedMiliSeconds, category, layer);
 			}
 		}
-		#endregion
+        #endregion
+        [Event(EventIds.MethodStart, Message = "{0}")]
+        public void Enter(Categories category, Layers layer, string className, string methodName, string message, string inArgs)
+        {
+            if (IsEnabled())
+            {
+                WriteEvent(EventIds.MethodStart, category, layer, className, methodName, message, inArgs);
+            }
+        }
 
-	}
+        [Event(EventIds.MethodEnd, Message = "{0}")]
+        public void Exit(Categories category, Layers layer, string className, string methodName, string message, string outArgs, long? elapsedMiliSeconds)
+        {
+            if (IsEnabled())
+            {
+                WriteEvent(EventIds.MethodEnd, category, layer, className, methodName, message, outArgs, elapsedMiliSeconds);
+            }
+        }
+
+        void ITraceLogger.Log(Stack<AsyncCallContext> callStack)
+        {
+            // DO nothing
+        }
+    }
 }

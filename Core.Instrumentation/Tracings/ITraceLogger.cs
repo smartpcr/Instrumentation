@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Core.Instrumentation.Tracings
+﻿namespace Core.Instrumentation.Tracings
 {
+    using System.Collections.Generic;
+    using Core.Instrumentation.Tracking;
+
     public interface ITraceLogger
     {
-        void BeforeMethod(string enteringMessage, Categories category, Layers layer);
-        void AfterMethod(string enteringMessage, Categories category, Layers layer);
+        void Enter(Categories category, Layers layer, string className, string methodName, string message, string inArgs);
+        void Exit(Categories category, Layers layer, string className, string methodName, string message, string outArgs, long? elapsedMiliSeconds);
+
+        void Log(Stack<AsyncCallContext> callStack);
     }
 }

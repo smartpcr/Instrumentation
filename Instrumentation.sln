@@ -10,6 +10,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D7F26B1B-7A01-46AE-A9E6-635A2D366017}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Instrumentation.Tests", "Core.Instrumentation.Tests\Core.Instrumentation.Tests.csproj", "{36580461-A35E-4DFB-A79E-1BB3D4FDCE27}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.IoC", "Core.IoC\Core.IoC.csproj", "{D4DDFFC9-3410-4368-8D8E-8A0FC2AAAF25}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,8 +26,19 @@ Global
 		{B383D182-4502-498A-B050-650F8663DFDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B383D182-4502-498A-B050-650F8663DFDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B383D182-4502-498A-B050-650F8663DFDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36580461-A35E-4DFB-A79E-1BB3D4FDCE27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36580461-A35E-4DFB-A79E-1BB3D4FDCE27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36580461-A35E-4DFB-A79E-1BB3D4FDCE27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36580461-A35E-4DFB-A79E-1BB3D4FDCE27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4DDFFC9-3410-4368-8D8E-8A0FC2AAAF25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4DDFFC9-3410-4368-8D8E-8A0FC2AAAF25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4DDFFC9-3410-4368-8D8E-8A0FC2AAAF25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4DDFFC9-3410-4368-8D8E-8A0FC2AAAF25}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{36580461-A35E-4DFB-A79E-1BB3D4FDCE27} = {D7F26B1B-7A01-46AE-A9E6-635A2D366017}
 	EndGlobalSection
 EndGlobal
