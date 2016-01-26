@@ -19,4 +19,4 @@ Scenario Template: track method call
 Examples: 
 | Subject    | Average |
 | Math       | 73      |
-| Literature | 81      |
+| Literature | 80      |

@@ -53,6 +53,10 @@ namespace Core.Instrumentation.Tracings
 
         public void Log(Stack<AsyncCallContext> callStack)
         {
+            if (callStack == null || callStack.Count == 0)
+                return;
+
+            Trace.WriteLine("Callgraph Start =====");
             var copy = new Stack<AsyncCallContext>(callStack);
             int indentCount = 1;
             while (copy.Count > 0)
@@ -61,6 +65,7 @@ namespace Core.Instrumentation.Tracings
                 Trace.WriteLine(string.Format("{0}{1}: {2}", ("".PadLeft(indentCount*2)), callContext.MethodName, callContext.InArgs));
                 indentCount++;
             }
+            Trace.WriteLine("Callgraph End =====");
         }
     }
 }

@@ -92,9 +92,39 @@ this.ScenarioSetup(scenarioInfo);
 #line 8
  testRunner.Given("product store is setup with following records", ((string)(null)), table1, "Given ");
 #line 12
- testRunner.When("I call api layer to get product by id 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I call api layer to get product by id 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 13
- testRunner.Then("I should get the following product with name \"Bike\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I should get the following product with name \"Train\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("track call graph in async methods")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "TrackCallGraph")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("callgraph")]
+        public virtual void TrackCallGraphInAsyncMethods()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("track call graph in async methods", new string[] {
+                        "callgraph"});
+#line 17
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Id",
+                        "Name"});
+            table2.AddRow(new string[] {
+                        "1",
+                        "Bike"});
+            table2.AddRow(new string[] {
+                        "2",
+                        "Train"});
+#line 18
+ testRunner.Given("product store is setup with following records", ((string)(null)), table2, "Given ");
+#line 22
+ testRunner.When("I call api layer to get product by id 1 and 2 asynchronously", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 23
+ testRunner.Then("I should get the following product with name \"Bike\" and \"Train\" respectively", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

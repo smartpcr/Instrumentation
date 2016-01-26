@@ -9,5 +9,15 @@ Scenario: track call graph
 	| Id | Name  |
 	| 1  | Bike  |
 	| 2  | Train |
-	When I call api layer to get product by id 1
-	Then I should get the following product with name "Bike"
+	When I call api layer to get product by id 2
+	Then I should get the following product with name "Train"
+
+
+@callgraph
+Scenario: track call graph in async methods
+	Given product store is setup with following records
+	| Id | Name  |
+	| 1  | Bike  |
+	| 2  | Train |
+	When I call api layer to get product by id 1 and 2 asynchronously
+	Then I should get the following product with name "Bike" and "Train" respectively

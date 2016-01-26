@@ -31,8 +31,8 @@ namespace Core.Instrumentation.Tests.Scenarios
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "TrackMethodCall", "In order to help trouble shooting \nAs a developer\nI want to be able to get list o" +
-                    "f correlated calls", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "TrackMethodCall", "In order to help trouble shooting \r\nAs a developer\r\nI want to be able to get list" +
+                    " of correlated calls", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -137,10 +137,10 @@ this.ScenarioSetup(scenarioInfo);
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("track")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Literature")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Subject", "Literature")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Average", "81")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Average", "80")]
         public virtual void TrackMethodCall_Literature()
         {
-            this.TrackMethodCall("Literature", "81", ((string[])(null)));
+            this.TrackMethodCall("Literature", "80", ((string[])(null)));
         }
     }
 }

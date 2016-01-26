@@ -133,6 +133,10 @@
                 {
                     Bootstrap.GetLogger().Log(callStack);
                 }
+                if (callStack.Count == 0)
+                {
+                    callStack = null;
+                }
             }
             
         }
